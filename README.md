@@ -1,5 +1,11 @@
 # Ice Cream Active Record
 
+[![Build Status](https://travis-ci.org/AdamKyle/ice-cream-router.svg?branch=master)](https://travis-ci.org/AdamKyle/ice-cream-router)
+[![Packagist](https://img.shields.io/packagist/v/ice-cream/database.svg?style=flat)](https://packagist.org/packages/ice-cream/database)
+[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
+[![Made With Love](https://img.shields.io/badge/Made%20With-Love-green.svg)]()
+
+
 An Active Record Implementation for the Ice Cream components that can together create a small versatile
 web framework.
 
