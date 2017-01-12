@@ -6,6 +6,10 @@ web framework.
 - Requires PHP 7
 - Is Standalone
 
+## Install
+
+`composer require ice-cream/database`
+
 ## Purpose?
 
 I wanted to understand PDO, and I still have a lot to learn about it. I could have used and created a thin wrapper around Doctrines DBAL, much like I did with [Ice Cream Router](https://github.com/AdamKyle/ice-cream-router) in the sense that I did a thin wrapper around Symfony's router.
