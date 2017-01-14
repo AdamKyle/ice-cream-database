@@ -52,7 +52,7 @@ class ConnectTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testGetDefaultPDOConnection() {
-        $this->_connectClass->expects($this->any())
+        $this->_connectClass->expects($this->once())
                             ->method('getConnections')
                             ->will($this->returnValue([
                                 'mysql' => $this->_pdo,

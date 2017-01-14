@@ -17,7 +17,6 @@ class Connect {
 
     public function __construct($config) {
         $this->_config = $config;
-
         $this->connect();
     }
 
@@ -34,13 +33,13 @@ class Connect {
         $this->_connectionManager = new ConnectionManager($this->getConnections());
     }
 
-    private function getDatabaseHandlers() {
+    protected function getDatabaseHandlers() {
         foreach ($this->_config as $name => $config) {
             $this->_databaseDrivers[$name] = (new DriverFactory($name, $config))->createDriverInstance();
         }
     }
-
-    private function getConnections() {
+    
+    public function getConnections() {
         $connections = [];
 
         foreach ($this->_databaseDrivers as $name => $driver) {
