@@ -1,7 +1,7 @@
 # Ice Cream Database
 
 [![Build Status](https://travis-ci.org/AdamKyle/ice-cream-database.svg?branch=master)](https://travis-ci.org/AdamKyle/ice-cream-database)
-[![Packagist](https://img.shields.io/packagist/v/ice-cream/database.svg?style=flat)](https://packagist.org/packages/ice-cream/database)
+[![Packagist](https://img.shields.io/packagist/v/ice-cream/database.svg)]()
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
 [![Made With Love](https://img.shields.io/badge/Made%20With-Love-green.svg)]()
 
