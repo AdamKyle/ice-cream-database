@@ -74,8 +74,8 @@ class ConnectionManager  {
 
 
     protected function storeAllContections(array $connections) {
-        var_dump($connections);
         foreach ($connections as $name => $connection) {
+            var_dump($connection);
             if (!$connection instanceof PDO) {
                 throw new \Exception('connection must be instance of PDO');
             }
