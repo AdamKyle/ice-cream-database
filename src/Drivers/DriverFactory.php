@@ -3,7 +3,7 @@
 namespace IceCreamDatabase\Drivers;
 
 use IceCreamDatabase\Drivers\Mysql\MysqlDriver;
-use IceCreamDatabase\Drivers\Pgsql\PgSqlDriver;
+use IceCreamDatabase\Drivers\PgSql\PgSqlDriver;
 
 class DriverFactory {
 
