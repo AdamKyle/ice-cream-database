@@ -4,6 +4,9 @@ namespace IceCreamDatabase\Drivers\PgSql;
 
 use IceCreamDatabase\Drivers\BaseDriver;
 
+/**
+ * Creates the connection string for PgSql.
+ */
 class PgSqlDriver extends BaseDriver {
 
     private $_charSet = '';
@@ -16,6 +19,9 @@ class PgSqlDriver extends BaseDriver {
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function connectionString(): String {
 
         if ($this->_charSet !== '') {
