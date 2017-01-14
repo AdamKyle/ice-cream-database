@@ -47,12 +47,14 @@ class ConnectTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function tearDown() {
+        parent::tearDown();
+
         $this->_pdo          = null;
         $this->_connectClass = null;
     }
 
     public function testGetDefaultPDOConnection() {
-        $this->_connectClass->expects($this->once())
+        $this->_connectClass->expects($this->any())
                             ->method('getConnections')
                             ->will($this->returnValue([
                                 'mysql' => $this->_pdo,
