@@ -4,6 +4,9 @@ namespace IceCreamDatabase\Drivers\Mysql;
 
 use IceCreamDatabase\Drivers\BaseDriver;
 
+/**
+ * Creates the connection string for MySql.
+ */
 class MysqlDriver extends BaseDriver {
 
     private $_charSet = '';
@@ -16,6 +19,9 @@ class MysqlDriver extends BaseDriver {
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function connectionString(): String {
 
         if ($this->_charSet !== '') {
