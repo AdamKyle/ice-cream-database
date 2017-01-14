@@ -1,9 +1,11 @@
 # Ice Cream Database
 
 [![Build Status](https://travis-ci.org/AdamKyle/ice-cream-database.svg?branch=master)](https://travis-ci.org/AdamKyle/ice-cream-database)
-[![Packagist](https://img.shields.io/packagist/v/ice-cream/database.svg)]()
+[![Packagist](https://img.shields.io/packagist/v/ice-cream/database.svg)](https://packagist.org/packages/ice-cream/database)
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
 [![Made With Love](https://img.shields.io/badge/Made%20With-Love-green.svg)]()
+
+**Actual Version: 1.2.1**
 
 
 A DBAL at the most simplest of terms. Its a thin wrapper around PDO, while returning a connected PDO object.
@@ -97,7 +99,7 @@ Once you are done with your database transactions you will have to manually clos
 $con->manager()->closeConnection('mysql'); // or `pgsql`
 
 // Or to close all connections:
-$con->manager->closeAllConnections();
+$con->manager()->closeAllConnections();
 
 // Both functions will either return true or false if the connections container is empty or the connection
 // cannot be found.
