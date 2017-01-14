@@ -1,13 +1,16 @@
-# Ice Cream Active Record
+# Ice Cream Database
 
-[![Build Status](https://travis-ci.org/AdamKyle/ice-cream-router.svg?branch=master)](https://travis-ci.org/AdamKyle/ice-cream-router)
+[![Build Status](https://travis-ci.org/AdamKyle/ice-cream-database.svg?branch=master)](https://travis-ci.org/AdamKyle/ice-cream-database)
 [![Packagist](https://img.shields.io/packagist/v/ice-cream/database.svg?style=flat)](https://packagist.org/packages/ice-cream/database)
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
 [![Made With Love](https://img.shields.io/badge/Made%20With-Love-green.svg)]()
 
 
-An Active Record Implementation for the Ice Cream components that can together create a small versatile
-web framework.
+A DBAL at the most simplest of terms. Its a thin wrapper around PDO, while returning a connected PDO object.
+
+We can connect to multiple database instances of either PGSQL or MYSQL (see below) and create open connections to each.
+
+Note how ever that its your responsibility to close each of the connections when finished. See below for more details.
 
 - Requires PHP 7
 - Is Standalone
@@ -37,19 +40,19 @@ use IceCreamDatabase\Connect;
 // Similar to that of Laravel if you are familiar.
 $connections = [
   'mysql' => [
-    'host' => 127.0.0.1,
+    'host' => '127.0.0.1',
     'port' => 3306,
-    'database' => 'nameOfDatabase',
-    'username' => 'WhoAreYou',
-    'password' => 'password',
+    'database' => '',
+    'username' => 'root',
+    'password' => 'root',
     'charset' => 'utf8',
   ],
   'pgsql' => [
-    'host' => 127.0.0.1,
-    'port' => 3306,
-    'database' => 'nameOfDatabase',
-    'username' => 'WhoAreYou',
-    'password' => 'password',
+    'host' => '127.0.0.1',
+    'port' => 5432,
+    'dbname' => 'scotchbox',
+    'username' => 'root',
+    'password' => 'root',
     'charset' => 'utf8',
   ],
 ]

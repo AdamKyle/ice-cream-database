@@ -44,7 +44,7 @@ class Connect {
         $connections = [];
 
         foreach ($this->_databaseDrivers as $name => $driver) {
-            $connections[$name] = new Connection($name . ':' . $driver->connectionString(), $driver->username(), $driver->password());
+            $connections[$name] = (new Connection($name . ':' . $driver->connectionString(), $driver->username(), $driver->password()))->connect();
         }
 
         return $connections;

@@ -78,5 +78,4 @@ class ConnectTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertInstanceOf(ConnectionManager::class, $this->_connectClass->manager());
     }
-
 }

@@ -40,8 +40,14 @@ abstract class BaseDriver {
             $this->_configurationString .= 'port=' . $configuration['port'] . ';';
         }
 
+        // MYSQL
         if (isset($configuration['database'])) {
             $this->_configurationString .= 'database=' . $configuration['database'] . ';';
+        }
+
+        // PGSQL
+        if (isset($configuration['dbname'])) {
+            $this->_configurationString .= 'dbname=' . $configuration['dbname'] . ';';
         }
     }
 }
