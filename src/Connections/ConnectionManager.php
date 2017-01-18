@@ -95,43 +95,6 @@ class ConnectionManager  {
         return false;
     }
 
-    /**
-     * Close a connection in a list of connections.
-     *
-     * Can return false if the connection name cannot be found.
-     *
-     * If the connection is a default connection and it is closed the default connection will also be set to null,
-     * forcing you to set you to set a new connectio as a default connection manually.
-     *
-     * @param String name
-     * @return bool
-     */
-    public function closeConnection(String $name) {
-        if (isset($this->_connections[$name])) {
-            $this->_connections[$name] = null;
-
-            if (isset($this->_defaultConnection[$name])) {
-                $this->_defaultConnection = null;
-            }
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Closes all connections and sets default connection to null.
-     */
-    public function closeAllConnections() {
-        forEach($this->_connections as $name => $pdoConnection) {
-            $this->_connections[$name] = null;
-        }
-
-        $this->_defaultConnection = null;
-    }
-
-
     protected function storeAllContections(array $connections) {
         foreach ($connections as $name => $connection) {
             if (!$connection instanceof PDO) {

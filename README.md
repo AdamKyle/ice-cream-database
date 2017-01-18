@@ -5,14 +5,12 @@
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
 [![Made With Love](https://img.shields.io/badge/Made%20With-Love-green.svg)]()
 
-**Actual Version: 1.2.1**
+**Actual Version: 1.3.0**
 
 
 A DBAL at the most simplest of terms. Its a thin wrapper around PDO, while returning a connected PDO object.
 
 We can connect to multiple database instances of either PGSQL or MYSQL (see below) and create open connections to each.
-
-Note how ever that its your responsibility to close each of the connections when finished. See below for more details.
 
 - Requires PHP 7
 - Is Standalone
@@ -28,7 +26,7 @@ I wanted to understand PDO, and I still have a lot to learn about it. I could ha
 But I thought I could build something super simple, super easy to get started with and something that
 allowed me to understand exactly how PHP connects to a database.
 
-While this isn't as fully flushed out as a regular DBAL, it is a good step in the process. You open a connection, get a db object back, do your work and then manually close the connection.
+While this isn't as fully flushed out as a regular DBAL, it is a good step in the process. You open a connection, get a db object back, do your work and you move on with your life.
 
 There is room for growth here and room for improvement and your feedback and help will help to shape Ice Cream components into a framework.
 
@@ -92,15 +90,3 @@ $con->db('pgsql')->exec( ... );
 > connection strings to connect to the database in question.
 >
 > These names are also whats stored in the associated connections manager that manages all connections.
-
-Once you are done with your database transactions you will have to manually close the connection your self:
-
-```php
-$con->manager()->closeConnection('mysql'); // or `pgsql`
-
-// Or to close all connections:
-$con->manager()->closeAllConnections();
-
-// Both functions will either return true or false if the connections container is empty or the connection
-// cannot be found.
-```

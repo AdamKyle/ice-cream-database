@@ -61,52 +61,6 @@ class ConnectionManagerTest extends \PHPUnit_Framework_TestCase {
         $this->assertFalse($cm->setDefaultConnection('sdasdsa'));
     }
 
-    public function testShouldReturnFalseForClosingAConnection() {
-        $connections = [
-            'mysql' => $this->_pdo,
-            'pgsql' => $this->_pdo,
-        ];
-
-        $cm = new ConnectionManager($connections);
-
-        $this->assertFalse($cm->closeConnection('sdasdsa'));
-    }
-
-    public function testShouldReturnTrueForClosingAConnection() {
-        $connections = [
-            'mysql' => $this->_pdo,
-            'pgsql' => $this->_pdo,
-        ];
-
-        $cm = new ConnectionManager($connections);
-
-        $this->assertTrue($cm->closeConnection('mysql'));
-    }
-
-    public function testShouldReturnNullForAClosedConnection() {
-        $connections = [
-            'mysql' => $this->_pdo,
-            'pgsql' => $this->_pdo,
-        ];
-
-        $cm = new ConnectionManager($connections);
-        $cm->closeConnection('mysql');
-
-        $this->assertNull($cm->getConnection('mysql'));
-    }
-
-    public function testShouldReturnNullForAllClosedConnection() {
-        $connections = [
-            'mysql' => $this->_pdo,
-            'pgsql' => $this->_pdo,
-        ];
-
-        $cm = new ConnectionManager($connections);
-        $cm->closeAllConnections();
-
-        $this->assertNull($cm->getConnection('mysql'));
-    }
-
     public function testShouldReturnInstanceOfDefaultPdo() {
         $connections = [
             'mysql' => $this->_pdo,
@@ -140,44 +94,5 @@ class ConnectionManagerTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertFalse($cm->setDefaultConnection('888'));
         $this->assertInstanceOf(\PDO::class, $cm->getConnection());
-    }
-
-    public function testShouldCloseConnection() {
-        $connections = [
-            'mysql' => $this->_pdo,
-            'pgsql' => $this->_pdo,
-        ];
-
-        $cm = new ConnectionManager($connections);
-
-        $this->assertTrue($cm->closeConnection('mysql'));
-        $this->assertNull($cm->getConnection('mysql'));
-    }
-
-    public function testShouldNotCloseConnection() {
-        $connections = [
-            'mysql' => $this->_pdo,
-            'pgsql' => $this->_pdo,
-        ];
-
-        $cm = new ConnectionManager($connections);
-
-        $this->assertFalse($cm->closeConnection('adsdsad'));
-        $this->assertNotNull($cm->getConnection('mysql'));
-    }
-
-    public function testShouldCloseAllConnections() {
-        $connections = [
-            'mysql' => $this->_pdo,
-            'pgsql' => $this->_pdo,
-        ];
-
-        $cm = new ConnectionManager($connections);
-
-        $cm->closeAllConnections();
-        
-        $this->assertNull($cm->getConnection('mysql')); // Named
-        $this->assertNull($cm->getConnection('pgsql')); // Named
-        $this->assertNull($cm->getConnection());        // default
     }
 }

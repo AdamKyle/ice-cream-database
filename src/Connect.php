@@ -95,13 +95,13 @@ class Connect {
      * This method is only public for testing purposes to be able to mock the method
      * and return fake PDO objects. You should enevr call this directly.
      *
-     * @return Array ['driver_name' => \PDO, ...] 
+     * @return Array ['driver_name' => \PDO, ...]
      */
     public function getConnections() {
         $connections = [];
 
         foreach ($this->_databaseDrivers as $name => $driver) {
-            $connections[$name] = (new Connection($name . ':' . $driver->connectionString(), $driver->username(), $driver->password()))->connect();
+            $connections[$name] = new PDO($name . ':' . $driver->connectionString(), $driver->username(), $driver->password());
         }
 
         return $connections;
