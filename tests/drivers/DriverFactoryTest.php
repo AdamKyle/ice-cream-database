@@ -2,6 +2,7 @@
 
 use IceCreamDatabase\Drivers\Mysql\MysqlDriver;
 use IceCreamDatabase\Drivers\Pgsql\PgSqlDriver;
+use IceCreamDatabase\Drivers\Sqlite\SqliteDriver;
 use IceCreamDatabase\Drivers\DriverFactory;
 
 class DriverFactoryTest extends \PHPUnit_Framework_TestCase {
@@ -10,7 +11,7 @@ class DriverFactoryTest extends \PHPUnit_Framework_TestCase {
 
     public function setUp() {
         parent::setUp();
-        
+
         $this->_databaseConnectionConfig = [
             'mysql' => [
               'host' => '127.0.0.1',
@@ -28,6 +29,9 @@ class DriverFactoryTest extends \PHPUnit_Framework_TestCase {
               'password' => 'password',
               'charset' => 'utf8',
             ],
+            'sqlite' => [
+                'temp_file' => ':memory'
+            ]
         ];
     }
 
@@ -47,6 +51,16 @@ class DriverFactoryTest extends \PHPUnit_Framework_TestCase {
             (new DriverFactory(
                 'pgsql',
                 $this->_databaseConnectionConfig['pgsql'])
+            )->createDriverInstance()
+        );
+    }
+
+    public function testGetSqliteDriverInstance() {
+        $this->assertInstanceOf(
+            SqliteDriver::class,
+            (new DriverFactory(
+                'sqlite',
+                $this->_databaseConnectionConfig['sqlite'])
             )->createDriverInstance()
         );
     }

@@ -30,6 +30,7 @@ use IceCreamDatabase\Connections\ConnectionManager;
  *     'password' => 'root',
  *     'charset' => 'utf8',
  *   ],
+ *   'sqlite' => [ 'templ_file' => ':memory' ]
  * ]
  * </pre>
  *

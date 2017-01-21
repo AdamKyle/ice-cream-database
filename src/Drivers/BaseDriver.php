@@ -66,6 +66,7 @@ abstract class BaseDriver {
     }
 
     protected function createConfigurationString(array $configuration) {
+
         if (isset($configuration['host'])) {
             $this->_configurationString = 'host=' . $configuration['host'] . ';';
         }
@@ -82,6 +83,11 @@ abstract class BaseDriver {
         // PGSQL
         if (isset($configuration['dbname'])) {
             $this->_configurationString .= 'dbname=' . $configuration['dbname'] . ';';
+        }
+
+        // Sqlite
+        if (isset($configuration['temp_file'])) {
+            $this->_configurationString .= $configuration['temp_file'] . ';';
         }
     }
 }

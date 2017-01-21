@@ -50,6 +50,18 @@ class ConnectionManagerTest extends \PHPUnit_Framework_TestCase {
         $this->assertTrue($cm->setDefaultConnection('pgsql'));
     }
 
+    public function testSetSqliteAsDefaultConnection() {
+        $connections = [
+            'mysql'  => $this->_pdo,
+            'pgsql'  => $this->_pdo,
+            'sqlite' => $this->_pdo,
+        ];
+
+        $cm = new ConnectionManager($connections);
+
+        $this->assertTrue($cm->setDefaultConnection('sqlite'));
+    }
+
     public function testShouldReturnFalseSetDefaultConnection() {
         $connections = [
             'mysql' => $this->_pdo,
@@ -75,8 +87,9 @@ class ConnectionManagerTest extends \PHPUnit_Framework_TestCase {
 
     public function testShoudSetNewDefaultConnection() {
         $connections = [
-            'mysql' => $this->_pdo,
-            'pgsql' => $this->_pdo,
+            'mysql'  => $this->_pdo,
+            'pgsql'  => $this->_pdo,
+            'sqlite' => $this->_pdo,
         ];
 
         $cm = new ConnectionManager($connections);

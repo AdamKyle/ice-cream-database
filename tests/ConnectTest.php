@@ -36,6 +36,9 @@ class ConnectTest extends \PHPUnit_Framework_TestCase {
               'password' => 'password',
               'charset' => 'utf8',
             ],
+            'sqlite' => [
+                'temp_file' => ':memory',
+            ]
         ];
 
         $this->_pdo = $this->getMockBuilder(PDOMock::class)
@@ -57,14 +60,16 @@ class ConnectTest extends \PHPUnit_Framework_TestCase {
         $this->_connectClass->expects($this->any())
                             ->method('getConnections')
                             ->will($this->returnValue([
-                                'mysql' => $this->_pdo,
-                                'psql'  => $this->_pdo
+                                'mysql'  => $this->_pdo,
+                                'psql'   => $this->_pdo,
+                                'sqlite' => $this->_pdo
                             ]));
 
         $this->_connectClass->__construct($this->_coreConfig);
 
         $this->assertInstanceOf(\PDO::class, $this->_connectClass->db('mysql')); // Named
         $this->assertInstanceOf(\PDO::class, $this->_connectClass->db('psql'));  // Named
+        $this->assertInstanceOf(\PDO::class, $this->_connectClass->db('sqlite'));  // Named
         $this->assertInstanceOf(\PDO::class, $this->_connectClass->db());        // Default
     }
 
@@ -72,8 +77,9 @@ class ConnectTest extends \PHPUnit_Framework_TestCase {
         $this->_connectClass->expects($this->any())
                             ->method('getConnections')
                             ->will($this->returnValue([
-                                'mysql' => $this->_pdo,
-                                'psql'  => $this->_pdo
+                                'mysql'  => $this->_pdo,
+                                'psql'   => $this->_pdo,
+                                'sqlite' => $this->_pdo
                             ]));
 
         $this->_connectClass->__construct($this->_coreConfig);

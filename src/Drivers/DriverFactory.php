@@ -4,6 +4,7 @@ namespace IceCreamDatabase\Drivers;
 
 use IceCreamDatabase\Drivers\Mysql\MysqlDriver;
 use IceCreamDatabase\Drivers\PgSql\PgSqlDriver;
+use IceCreamDatabase\Drivers\Sqlite\SqliteDriver;
 
 /**
  * Returns the appropriate driver for the connection.
@@ -39,6 +40,8 @@ class DriverFactory {
                 return new MysqlDriver($this->_configuration);
             case 'pgsql':
                 return new PgSqlDriver($this->_configuration);
+            case 'sqlite':
+                return new SqliteDriver($this->_configuration);
             default:
                 throw new \Exception('Could not create driver instance. Driver not found.');
         }

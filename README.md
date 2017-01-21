@@ -5,7 +5,7 @@
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
 [![Made With Love](https://img.shields.io/badge/Made%20With-Love-green.svg)]()
 
-**Actual Version: 1.3.0**
+**Actual Version: 1.4.0**
 
 
 A DBAL at the most simplest of terms. Its a thin wrapper around PDO, while returning a connected PDO object.
@@ -55,9 +55,12 @@ $connections = [
     'password' => 'root',
     'charset' => 'utf8',
   ],
+  'sqlite' => [
+    'temp_file' => ':memory'
+  ]
 ]
 
-// At this time I have made the choice to only support mysql and pgsql connections.
+// At this time I have made the choice to only support mysql and pgsql as well as sqlite connections.
 // More can be added in the future, simplicity was the game here.
 
 $con = new Connect($connections);
@@ -80,11 +83,12 @@ $con->db()->exec( ... );
 
 $con->db('mysql')->exec( ... );
 $con->db('pgsql')->exec( ... );
+$con->db('sqlite')->exec( ... );
 ```
 
 > ## ATTN!!
 >
-> Notice in the configuration how we have the key as `mysql` or `pgsql`?
+> Notice in the configuration how we have the key as `mysql` or `pgsql` as well as `sqlite`?
 >
 > This is important because these correlate to the supported drivers that create the
 > connection strings to connect to the database in question.
