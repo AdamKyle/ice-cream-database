@@ -108,4 +108,36 @@ class ConnectionManagerTest extends \PHPUnit_Framework_TestCase {
         $this->assertFalse($cm->setDefaultConnection('888'));
         $this->assertInstanceOf(\PDO::class, $cm->getConnection());
     }
+
+    public function testShouldReturnConnectionName() {
+        $connections = [
+            'mysql' => $this->_pdo,
+            'pgsql' => $this->_pdo,
+            'sqlite' => $this->_pdo,
+        ];
+
+        $cm = new ConnectionManager($connections);
+
+        $this->assertEquals('mysql', $cm->getCurrentConnectionName());
+    }
+
+    public function testShouldReturnConnectionNameEvenWhenSettingDefault() {
+        $connections = [
+            'mysql' => $this->_pdo,
+            'pgsql' => $this->_pdo,
+            'sqlite' => $this->_pdo,
+        ];
+
+        $cm = new ConnectionManager($connections);
+
+        // Default is Mysql:
+        $this->assertEquals('mysql', $cm->getCurrentConnectionName());
+
+        // Change to sqlite:
+        $cm->setDefaultConnection('sqlite');
+
+        // Now it should be sqlite:
+        $this->assertNotEquals('mysql', $cm->getCurrentConnectionName());
+        $this->assertEquals('sqlite', $cm->getCurrentConnectionName());
+    }
 }

@@ -26,6 +26,8 @@ class ConnectionManager  {
 
     private $_defaultConnection = null;
 
+    private $_currentConnectionName = '';
+
     /**
      * Takes in a set of connections and stores them.
      *
@@ -89,10 +91,20 @@ class ConnectionManager  {
     public function setDefaultConnection(String $name) {
         if (isset($this->_connections[$name])) {
             $this->_defaultConnection[$name] = $this->_connections[$name];
+            $this->_currentConnectionName = $name;
             return true;
         }
 
         return false;
+    }
+
+    /**
+     * Returns the current connection name.
+     *
+     * @return String current connection name
+     */
+    public function getCurrentConnectionName(): String {
+        return $this->_currentConnectionName;
     }
 
     protected function storeAllContections(array $connections) {
@@ -106,5 +118,7 @@ class ConnectionManager  {
 
         reset($this->_connections);
         $this->setDefaultConnection(key($this->_connections));
+        $this->_currentConnectionName = key($this->_connections);
+
     }
 }
