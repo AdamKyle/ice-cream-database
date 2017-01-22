@@ -5,7 +5,7 @@
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
 [![Made With Love](https://img.shields.io/badge/Made%20With-Love-green.svg)]()
 
-**Actual Version: 1.4.0**
+**Actual Version: 1.4.1**
 
 
 A DBAL at the most simplest of terms. Its a thin wrapper around PDO, while returning a connected PDO object.
@@ -94,3 +94,9 @@ $con->db('sqlite')->exec( ... );
 > connection strings to connect to the database in question.
 >
 > These names are also whats stored in the associated connections manager that manages all connections.
+
+
+```php
+// Get the current connection name:
+$con->manager()->getCurrentConnectionName(); // mysql, sqlite or pgsql
+```
