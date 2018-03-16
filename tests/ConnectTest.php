@@ -5,10 +5,10 @@ use IceCreamDatabase\Drivers\Pgsql\PgSqlDriver;
 use IceCreamDatabase\Drivers\DriverFactory;
 use IceCreamDatabase\Connections\ConnectionManager;
 use IceCreamDatabase\Connect;
-
+use PHPUnit\Framework\TestCase;
 use IceCreamDatabase\Tests\Mocks\PDOMock;
 
-class ConnectTest extends \PHPUnit_Framework_TestCase {
+class ConnectTest extends TestCase {
 
     private $_pdo = null;
 

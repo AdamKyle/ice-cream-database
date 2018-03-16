@@ -1,8 +1,9 @@
 <?php
 
 use IceCreamDatabase\Drivers\Pgsql\PgSqlDriver;
+use PHPUnit\Framework\TestCase;
 
-class PgSqlDriverTest extends \PHPUnit_Framework_TestCase {
+class PgSqlDriverTest extends TestCase {
 
     private $_configuration = [];
 

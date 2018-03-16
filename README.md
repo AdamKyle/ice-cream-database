@@ -2,11 +2,8 @@
 
 [![Build Status](https://travis-ci.org/AdamKyle/ice-cream-database.svg?branch=master)](https://travis-ci.org/AdamKyle/ice-cream-database)
 [![Packagist](https://img.shields.io/packagist/v/ice-cream/database.svg)](https://packagist.org/packages/ice-cream/database)
-[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
+[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]()
 [![Made With Love](https://img.shields.io/badge/Made%20With-Love-green.svg)]()
-
-**Actual Version: 1.4.1**
-
 
 A DBAL at the most simplest of terms. Its a thin wrapper around PDO, while returning a connected PDO object.
 
@@ -29,6 +26,10 @@ allowed me to understand exactly how PHP connects to a database.
 While this isn't as fully flushed out as a regular DBAL, it is a good step in the process. You open a connection, get a db object back, do your work and you move on with your life.
 
 There is room for growth here and room for improvement and your feedback and help will help to shape Ice Cream components into a framework.
+
+## Documentation
+
+You can see the full documentation for the project [here](https://github.com/AdamKyle/ice-cream-database/blob/master/docs/ApiIndex.md)
 
 ## Configuration
 

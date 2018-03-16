@@ -4,10 +4,10 @@ use IceCreamDatabase\Drivers\Mysql\MysqlDriver;
 use IceCreamDatabase\Drivers\Pgsql\PgSqlDriver;
 use IceCreamDatabase\Drivers\DriverFactory;
 use IceCreamDatabase\Connections\ConnectionManager;
-
+use PHPUnit\Framework\TestCase;
 use IceCreamDatabase\Tests\Mocks\PDOMock;
 
-class ConnectionManagerTest extends \PHPUnit_Framework_TestCase {
+class ConnectionManagerTest extends TestCase {
 
     private $_databaseConnectionConfig = [];
 

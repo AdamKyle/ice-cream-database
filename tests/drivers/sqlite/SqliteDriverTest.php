@@ -1,8 +1,9 @@
 <?php
 
 use IceCreamDatabase\Drivers\Sqlite\SqliteDriver;
+use PHPUnit\Framework\TestCase;
 
-class SqliteDriverTest extends \PHPUnit_Framework_TestCase {
+class SqliteDriverTest extends TestCase {
 
     private $_configuration = [];
 

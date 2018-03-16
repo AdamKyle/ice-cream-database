@@ -1,0 +1,1031 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project title="API Documentation" version="2.8.5">
+  <partials/>
+  <file path="Connect.php" generated-path="Connect.html" hash="027fad0af80c46dd74ebd92f3a9e8022" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="PDO">\PDO</namespace-alias>
+    <namespace-alias name="DriverFactory">\IceCreamDatabase\Drivers\DriverFactory</namespace-alias>
+    <namespace-alias name="Connection">\IceCreamDatabase\Connections\Connection</namespace-alias>
+    <namespace-alias name="ConnectionManager">\IceCreamDatabase\Connections\ConnectionManager</namespace-alias>
+    <class final="false" abstract="false" namespace="IceCreamDatabase" line="46" package="Default">
+      <extends/>
+      <name>Connect</name>
+      <full_name>\IceCreamDatabase\Connect</full_name>
+      <docblock line="46">
+        <description>This is how you connect to the database of your choice.</description>
+        <long-description>Configuration is an array of driver =&gt; config:
+
+&lt;pre&gt;
+$connections = [
+ 'mysql' =&gt; [
+    'host' =&gt; '127.0.0.1',
+    'port' =&gt; 3306,
+    'database' =&gt; '',
+    'username' =&gt; 'root',
+    'password' =&gt; 'root',
+    'charset' =&gt; 'utf8',
+  ],
+  'pgsql' =&gt; [
+    'host' =&gt; '127.0.0.1',
+    'port' =&gt; 5432,
+    'dbname' =&gt; 'scotchbox',
+    'username' =&gt; 'root',
+    'password' =&gt; 'root',
+    'charset' =&gt; 'utf8',
+  ],
+  'sqlite' =&gt; [ 'templ_file' =&gt; ':memory' ]
+]
+&lt;/pre&gt;
+
+This is then passed into constructor and the associated connections are created.
+
+You then have access to db() method where you can pass in a connection name of mysql or psql
+to get the associated connection or pass in nothing and get the default connection.
+
+This is a thin wrapper around PDO so you have access to all the PDO methods and are responsible
+for handling how you disconnect, which you can do by: $conn-&gt;manager-&gt;closeAllConnections() to close
+all database connections.</long-description>
+        <tag name="package" line="46" description="Default"/>
+      </docblock>
+      <property static="false" visibility="private" namespace="IceCreamDatabase" line="48" package="Default">
+        <name>$_databaseDrivers</name>
+        <full_name>\IceCreamDatabase\Connect::_databaseDrivers</full_name>
+        <default>array()</default>
+        <docblock line="48">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="IceCreamDatabase" line="50" package="Default">
+        <name>$_connectionManager</name>
+        <full_name>\IceCreamDatabase\Connect::_connectionManager</full_name>
+        <default>null</default>
+        <docblock line="50">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase" line="57" package="Default">
+        <name>__construct</name>
+        <full_name>\IceCreamDatabase\Connect::__construct()</full_name>
+        <docblock line="57">
+          <description>Connect to the database.</description>
+          <long-description></long-description>
+          <tag name="param" line="57" description="" type="array" variable="$config">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$config</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase" line="69" package="Default">
+        <name>db</name>
+        <full_name>\IceCreamDatabase\Connect::db()</full_name>
+        <docblock line="69">
+          <description>Get the database connection.</description>
+          <long-description>If no name is passed in, we return the derfault connection.</long-description>
+          <tag name="param" line="69" description="&lt;p&gt;name - optional&lt;/p&gt;" type="String" variable="$name">
+            <type>String</type>
+          </tag>
+          <tag name="return" line="69" description="" type="\PDO">
+            <type>\PDO</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$name</name>
+          <default>''</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase" line="78" package="Default">
+        <name>manager</name>
+        <full_name>\IceCreamDatabase\Connect::manager()</full_name>
+        <docblock line="78">
+          <description>Get the database connection manager.</description>
+          <long-description></long-description>
+          <tag name="return" line="78" description="" type="\IceCreamDatabase\IceCreamDatabase\Connections\ConnectionManager">
+            <type>\IceCreamDatabase\IceCreamDatabase\Connections\ConnectionManager</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="IceCreamDatabase" line="82" package="Default">
+        <name>connect</name>
+        <full_name>\IceCreamDatabase\Connect::connect()</full_name>
+        <docblock line="82">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$config</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="IceCreamDatabase" line="87" package="Default">
+        <name>getDatabaseHandlers</name>
+        <full_name>\IceCreamDatabase\Connect::getDatabaseHandlers()</full_name>
+        <docblock line="87">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$config</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase" line="101" package="Default">
+        <name>getConnections</name>
+        <full_name>\IceCreamDatabase\Connect::getConnections()</full_name>
+        <docblock line="101">
+          <description>Get an array of connections.</description>
+          <long-description>This method is only public for testing purposes to be able to mock the method
+and return fake PDO objects. You should enevr call this directly.</long-description>
+          <tag name="return" line="101" description="['driver_name' =&gt; \PDO, ...]" type="Array">
+            <type>Array</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="82" code="PPC:ERR-50015">Argument $config is missing from the Docblock of connect</error>
+      <error line="82" code="PPC:ERR-50008">No summary for method connect()</error>
+      <error line="87" code="PPC:ERR-50015">Argument $config is missing from the Docblock of getDatabaseHandlers</error>
+      <error line="87" code="PPC:ERR-50008">No summary for method getDatabaseHandlers()</error>
+      <error line="48" code="PPC:ERR-50007">No summary for property $_databaseDrivers</error>
+      <error line="50" code="PPC:ERR-50007">No summary for property $_connectionManager</error>
+    </parse_markers>
+    <source>eJy9Vttu4zYQffdXzIMB2YHj7G56Qy5uFxu0zUPRAu1LkTUMiqIsdSlRJam4RpF/7wxJyZTsZJF9qBPYgubCM8Mzh7z5vimayaRmlTAN4wLuufigBavumGUpM+J6MmmNgI+/3f167Z7GDh/vdPkotAm/PzJuld4/4/tB1bXgtlS1iZ5f5fwLq9lWaMR1cXY2gTP4oygN4H+hdrBXLXDvClaBLQRkIR2onMwaeKFKLpYYStGYOC+3rWaUm9KwGpjWbE/+mSsJbleUFN2uQtBNo8WKHqb8gBFu4YHeQVLtzd8yoTD/Aj9JoYx1r5K3775dvsG/t8mitzZKe+vl5ZtvDq877D4w8sd+adozb9BK2TgZM2andHbSyAumjQhQWpt/19nW4Tdptl+M/uuvLt9F6NMDRMOV5UWq/vmfisASSuszP0BiRdXITV7KsNZVJSokaQJrcndfNxdhT2NKIX9qICQig7JGQuF2G6tbojgSJXMEQ7PiJbPoE7OBaQEc+YzvO679iex0KQv2iHGcC2OIplk6m0MlbKEy2BUCAx2PmV8bVwYWpQbqGbHT0QwQSYO/lB9TbYV9HpTzDRlrZYuy3roquqBM5KyVNopYjhrCgKJgp1nT4GAwrVqMR20AoxzoUWVMSpeZPHyBxq1IzdGoONioMpWClsgRXIE2Sai6Wc5KE8AssDMlL/rOZArS/ZUfwPNV5UXhfMWlMuK9lJF2YG9p58hA6xCkXhOiDaNSLyZcUn9CNPw7mRDfGpQBbCVMN11g0Dwa+fX12ImPtQrd6lbK4Ohkiz5n/TojqVoGe+f2Q8M0q4IsTb0UBduFX7tNZckhb2u/z5tNT9TZIGqOJUH4THErDXbMY5h1HtfO4ekI608dSY57N8Z7nyO9PE2RM/384BbSrttW14Fu+gTfTlX+u9XECpfxHFRDrkz2TiEnnVEvtgXnbOpy3KKYzuHK0fLQkJAm9OV4G89XOCgHYvlcX9IvCHQ9qjYgeN1J+GLJYaUZVXsU+YraB1U2Wlm04qb263Qs+hzbsINdVT/TsOMQjZgXOZ+eJLE7rmR2SD+Y/PnncJ/C82wNKFGCoQZ1iFFlIRBq1fmHm0QcFlc0EpAHF77GsmZU1+AK5fm1GCee48i6Y8U73+Ocs5qLWdS+pxcoGV9vhuo3oKIT/HAk4ZOq5b7nFgq1FcbSRDatblBXndanKPyo5fRYKf7Jkd9n6JKS8gei5eyTPxVU+hdCMEt3OJpCtTIDUYtHvKf5wwNXz0qNPnL/3Ly8dwU9JP66tunvFCQIC1gul+sXZ2RMmpi1o/tdJ/ZDNpze2yE7PLYjWkT5D1wgKiD0IFZLvK8k+B1S9IqNMV4XZ/PFwdhdqgYvu8tUPxARP+Lpj9B0g/M0+Q/kc7iE</source>
+  </file>
+  <file path="Connections/ConnectionManager.php" generated-path="Connections.ConnectionManager.html" hash="e7816529e8a1ca5cfe831d4a10a497b6" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="PDO">\PDO</namespace-alias>
+    <namespace-alias name="DriverFactory">\IceCreamDatabase\Drivers\DriverFactory</namespace-alias>
+    <namespace-alias name="Connection">\IceCreamDatabase\Connections\Connection</namespace-alias>
+    <class final="false" abstract="false" namespace="IceCreamDatabase\Connections" line="21" package="Default">
+      <extends/>
+      <name>ConnectionManager</name>
+      <full_name>\IceCreamDatabase\Connections\ConnectionManager</full_name>
+      <docblock line="21">
+        <description>Manage database connections.</description>
+        <long-description>We store a seet of connections based on your connection array and then
+allow you the developer to handle how those connections are managed.
+
+When storing one or more, we use the first connection as the default connection.
+This can be changed via the setDefaultConnection method.
+
+Its important to know that connections must be closed by the developer, we do not handle
+closing and opening connections.</long-description>
+        <tag name="package" line="21" description="Default"/>
+      </docblock>
+      <property static="false" visibility="private" namespace="IceCreamDatabase\Connections" line="23" package="Default">
+        <name>$_connections</name>
+        <full_name>\IceCreamDatabase\Connections\ConnectionManager::_connections</full_name>
+        <default>array()</default>
+        <docblock line="23">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="IceCreamDatabase\Connections" line="25" package="Default">
+        <name>$_driverInstances</name>
+        <full_name>\IceCreamDatabase\Connections\ConnectionManager::_driverInstances</full_name>
+        <default>array()</default>
+        <docblock line="25">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="IceCreamDatabase\Connections" line="27" package="Default">
+        <name>$_defaultConnection</name>
+        <full_name>\IceCreamDatabase\Connections\ConnectionManager::_defaultConnection</full_name>
+        <default>null</default>
+        <docblock line="27">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="IceCreamDatabase\Connections" line="29" package="Default">
+        <name>$_currentConnectionName</name>
+        <full_name>\IceCreamDatabase\Connections\ConnectionManager::_currentConnectionName</full_name>
+        <default>''</default>
+        <docblock line="29">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Connections" line="41" package="Default">
+        <name>__construct</name>
+        <full_name>\IceCreamDatabase\Connections\ConnectionManager::__construct()</full_name>
+        <docblock line="41">
+          <description>Takes in a set of connections and stores them.</description>
+          <long-description>Connections cannot be empty.
+
+Connections are a associative array of name =&gt; \PDO connection.</long-description>
+          <tag name="param" line="41" description="" type="array" variable="$connections">
+            <type>array</type>
+          </tag>
+          <tag name="throws" line="41" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$connections</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Connections" line="58" package="Default">
+        <name>getAllConnections</name>
+        <full_name>\IceCreamDatabase\Connections\ConnectionManager::getAllConnections()</full_name>
+        <docblock line="58">
+          <description>Get all the connections registered.</description>
+          <long-description>Some connections may be NULL, due to being closed.</long-description>
+          <tag name="return" line="58" description="" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Connections" line="68" package="Default">
+        <name>getConnection</name>
+        <full_name>\IceCreamDatabase\Connections\ConnectionManager::getConnection()</full_name>
+        <docblock line="68">
+          <description>Get the specified connection, default connection or return null</description>
+          <long-description></long-description>
+          <tag name="param" line="68" description="&lt;p&gt;name - optional&lt;/p&gt;" type="String" variable="$name">
+            <type>String</type>
+          </tag>
+          <tag name="return" line="68" description="or null" type="\PDO">
+            <type>\PDO</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$name</name>
+          <default>''</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Connections" line="91" package="Default">
+        <name>setDefaultConnection</name>
+        <full_name>\IceCreamDatabase\Connections\ConnectionManager::setDefaultConnection()</full_name>
+        <docblock line="91">
+          <description>Set a default connection other then whats already set.</description>
+          <long-description>By default if you have more then one connection the first connection is the default.
+How ever you can set a different connection as a default.
+
+If the connection cannot be found we return false.</long-description>
+          <tag name="param" line="91" description="&lt;p&gt;name&lt;/p&gt;" type="String" variable="$name">
+            <type>String</type>
+          </tag>
+          <tag name="return" line="91" description="" type="boolean">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$name</name>
+          <default></default>
+          <type>\IceCreamDatabase\Connections\String</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Connections" line="106" package="Default">
+        <name>getCurrentConnectionName</name>
+        <full_name>\IceCreamDatabase\Connections\ConnectionManager::getCurrentConnectionName()</full_name>
+        <docblock line="106">
+          <description>Returns the current connection name.</description>
+          <long-description></long-description>
+          <tag name="return" line="106" description="current connection name" type="String">
+            <type>String</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="IceCreamDatabase\Connections" line="110" package="Default">
+        <name>storeAllContections</name>
+        <full_name>\IceCreamDatabase\Connections\ConnectionManager::storeAllContections()</full_name>
+        <docblock line="110">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$connections</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="91" code="PPC:ERR-50016">The type hint of the argument is incorrect for the type definition of the @param tag with argument $name in setDefaultConnection()</error>
+      <error line="110" code="PPC:ERR-50015">Argument $connections is missing from the Docblock of storeAllContections</error>
+      <error line="110" code="PPC:ERR-50008">No summary for method storeAllContections()</error>
+      <error line="23" code="PPC:ERR-50007">No summary for property $_connections</error>
+      <error line="25" code="PPC:ERR-50007">No summary for property $_driverInstances</error>
+      <error line="27" code="PPC:ERR-50007">No summary for property $_defaultConnection</error>
+      <error line="29" code="PPC:ERR-50007">No summary for property $_currentConnectionName</error>
+    </parse_markers>
+    <source>eJylVt9v2zYQftdfcQMM2AnS5H1eu7ZJtwXo2mHd0IemCGjpFAmRSIGk4hpF/vfdUZREWpI3YHyxLN599+u7O/30c1M0SSJFjaYRKcJtitcaRX0jrNgJg3fXSkpMbamk2SZJaxDu/rj5uHVPE+EbXT6hNv73F5FapQ8LsgFw8Ew2rs7PEziH34UUDwiZl4d0lL+kexb5jGDIAoIAg2hB5aEUsFoGSsJBtTq4AaG1OICQGdgCJSOJqlJ7luM3kOETVqpBDVZBQXIVQkH3tlCxI4SEUDtHs8EpgnRulfKBjCMoDTU5eQF7BM4EW8hLbWzkkvGWc9FW4Q3Dwl9FaSAVEnZknhwic/BUCqdi0N50WmMWoUbydXDp1hoo60ZpK6TlmB6li0bYKJi6JZ/YQqU4cbtDnAwXQKZAKuuTwtgszJFyNklK8vNRqa6StBLGwOhfV1sN8D1JgE5DfBEWYXUf+vMSvnzdHgtkjlq30lAsKS4JTRLyEmRbVRPBtNUaZSD4gTqBhNdrL+rIyIeKIB7JXikd2yZk4/gdGV0h60uv1SsHbOdCcg4p01g39nBKVDhyU/JUWgpLkXvuknHpPH3l2jHmS4T2uhFa1F5tFXg8CNhCq72Bu3ffUmz4yt9cdblqd1WZQt7KLpH3XCJjdZvazRT0jCoK/pQ5bFyAm0giFOHjzIPEfeDBJpLgsw6z8sbZve7S+BbhnUvjOlI62w5/n5PhcWWpk168coV6U1UEaj1o7GSn/DzhwK9UeJoVrjHC6mt8KI1F7cZAlP9Pqo5Fa3KdSv/h7/fvLyBrkftxh65tXN9NCqjRttoPrZOleUDbxdTb2oS59jA+A2GjnQrWTZgG0zIvaSSMShczo4onnbfCzTZPxE/WDUbH3hc0MVhRVMfBMqcJLYBZDHmMd7OSffce87A01LKbmdi/OJ2vE1YuZ8trzNKrM3XPbg/GJrNoYitM2iysv/fD6gRyVMmxlExDJu5szajC2u1B2NNCoJFT0ZrODjzjLnv1AebtYcCgWHlfFoKGEu+3DoMXXoA+u+vKaNcNRuA3mgO0bLTD5W1nOqfLPEcO/GhfignCgHSbH3VoMHNz1dKoplXms5qLyuAUYkrX8cpr7pSq+pfz9JzbzRsP6Wj0v3m6yAWvQN3wXzgcQi3tRKeznesS2gZ4irguxUtT5k8n01HCmw4Lx0aXRqLP5ILWvw6OuTg3Zz/2sMujc04xCq/RivcKTcyRCjMr5/T+zElBpAVEm4mJv+pXf3BxzAsm0w+rsOn8FxN9OdBwnYwgWFjE6wCi/z7soaDDWp/FpAjqH9FqQj/m1Ph2gUAL/RDY7Hf6XK894mFWe6q+SPslCP+B+Jw8J/8AS00dTw==</source>
+  </file>
+  <file path="Drivers/BaseDriver.php" generated-path="Drivers.BaseDriver.html" hash="7b0bbd0d966ec62f28ddb019cca64e5c" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="true" namespace="IceCreamDatabase\Drivers" line="16" package="Default">
+      <extends/>
+      <name>BaseDriver</name>
+      <full_name>\IceCreamDatabase\Drivers\BaseDriver</full_name>
+      <docblock line="16">
+        <description>Extend this class to create a driver.</description>
+        <long-description>Responsible for storing basic information about the driver
+and how to connect to it.
+
+Creates the basic configiuration string (some drivers may need to do some extra work)
+and stores the user name and password for the connection to the database which should
+come from the enviroment file.</long-description>
+        <tag name="package" line="16" description="Default"/>
+      </docblock>
+      <property static="false" visibility="protected" namespace="IceCreamDatabase\Drivers" line="18" package="Default">
+        <name>$_configurationString</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::_configurationString</full_name>
+        <default>''</default>
+        <docblock line="18">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="IceCreamDatabase\Drivers" line="20" package="Default">
+        <name>$_username</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::_username</full_name>
+        <default>''</default>
+        <docblock line="20">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="IceCreamDatabase\Drivers" line="21" package="Default">
+        <name>$_password</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::_password</full_name>
+        <default>''</default>
+        <docblock line="21">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers" line="28" package="Default">
+        <name>__construct</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::__construct()</full_name>
+        <docblock line="28">
+          <description>Configuration informatiuon for the database.</description>
+          <long-description></long-description>
+          <tag name="param" line="28" description="" type="array" variable="$configuration">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$configuration</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="IceCreamDatabase\Drivers" line="48" package="Default">
+        <name>connectionString</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::connectionString()</full_name>
+        <docblock line="48">
+          <description>This function returns the $_configurationString</description>
+          <long-description>Use this functions to append information to the protected $_configurationString
+and then return that as the connection string.</long-description>
+          <tag name="return" line="48" description="" type="String">
+            <type>String</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers" line="55" package="Default">
+        <name>username</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::username()</full_name>
+        <docblock line="55">
+          <description>Gets the username for the database.</description>
+          <long-description></long-description>
+          <tag name="return" line="55" description="" type="String">
+            <type>String</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers" line="64" package="Default">
+        <name>password</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::password()</full_name>
+        <docblock line="64">
+          <description>Gets the password for the database.</description>
+          <long-description></long-description>
+          <tag name="return" line="64" description="" type="String">
+            <type>String</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="IceCreamDatabase\Drivers" line="68" package="Default">
+        <name>createConfigurationString</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::createConfigurationString()</full_name>
+        <docblock line="68">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$configuration</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="68" code="PPC:ERR-50015">Argument $configuration is missing from the Docblock of createConfigurationString</error>
+      <error line="68" code="PPC:ERR-50008">No summary for method createConfigurationString()</error>
+      <error line="18" code="PPC:ERR-50007">No summary for property $_configurationString</error>
+      <error line="20" code="PPC:ERR-50007">No summary for property $_username</error>
+      <error line="21" code="PPC:ERR-50007">No summary for property $_password</error>
+    </parse_markers>
+    <source>eJytVduO0zAQfc9XzEOltJVo3ykLiC5aIYEEFB5WgCondTYWiR1sZ7sI9d8Z35o0aXpBRKsqW885c2Z8ZvriVZVXUcRJSVVFUgrvUrqUlJS3RJOEKPr9VrJHKtUiiubTaQRTePukKd+AzpmCtCBKgRaQIkZTILCx4TMMdH/wGYkFVywpKGRCgtJCMv4ASM5SYBy/K4lmggNJRK2Rl3oSgyaYKRdbm0JwTlNtXpn2CWBp8yqLcowYlrEHVktHqrTNNlaiDLwKSvIbOKUbw7URYM/ok5YEtkL+nITERqrnrhWVYLpkDyqsGiM3tiBz7LWZhEhpS/D9g23O0hxULupiY4hTkyyTorRhlD8yfKdcQ8YKasqaRyRB1QRLde19gzTuFuBPFAE+lRQa02EBo7Wr15e7ctXeQBwv+qGmCFuDO+8e76tqwe2dmwdb3U7UXFyN/4Q2hKJnHhOgrysiSQlESmz86ECxD5k7NXVS4BVmNXe9XJvqsBd1qsfHwBNsCPiHZTBmSlE9Poz5Foey4x+TNsA8I+PiZy/bnRlGL/bQXXRB2tDOE2lbHR9GH03rGdzYLfsW6KiZOJJd71K/mCne91tSXUvuHH/UWZ17/Yr+1m0GuwtIVZkF0R5tPxRnfBtoiV0vNOjBd6KBqO6kudHuec2DDiidvfZz1fVZQ+q7N3nu8f0xuKO6WQnWM2fdP6yoKyRwNgJazvE0Xc8OXe1eaG9b/QehgfMSoSH2QGhjheYWBs08NPsXTGEulD4xgQPb06BuYpj1xtLR4UG8iK/dB0Jeq2SGUgzsqBTHd0LKfA4f7lef3l+gLTjiH/QF6FGNDe9pnR/vLtSZnFnkgyot8LhGz3la4epXwTS9QKKmZbU2v+XXqzxB1RfnPnfRX9dUAGA=</source>
+  </file>
+  <file path="Drivers/DriverFactory.php" generated-path="Drivers.DriverFactory.html" hash="d271627a8508b028948460b6f23ffa66" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="MysqlDriver">\IceCreamDatabase\Drivers\Mysql\MysqlDriver</namespace-alias>
+    <namespace-alias name="PgSqlDriver">\IceCreamDatabase\Drivers\PgSql\PgSqlDriver</namespace-alias>
+    <namespace-alias name="SqliteDriver">\IceCreamDatabase\Drivers\Sqlite\SqliteDriver</namespace-alias>
+    <class final="false" abstract="false" namespace="IceCreamDatabase\Drivers" line="15" package="Default">
+      <extends/>
+      <name>DriverFactory</name>
+      <full_name>\IceCreamDatabase\Drivers\DriverFactory</full_name>
+      <docblock line="15">
+        <description>Returns the appropriate driver for the connection.</description>
+        <long-description>Simple factory to determine if we need a PSQL or MYSQL driver
+returned based on the type.</long-description>
+        <tag name="package" line="15" description="Default"/>
+      </docblock>
+      <property static="false" visibility="private" namespace="IceCreamDatabase\Drivers" line="17" package="Default">
+        <name>$_type</name>
+        <full_name>\IceCreamDatabase\Drivers\DriverFactory::_type</full_name>
+        <default></default>
+        <docblock line="17">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="IceCreamDatabase\Drivers" line="18" package="Default">
+        <name>$_configuration</name>
+        <full_name>\IceCreamDatabase\Drivers\DriverFactory::_configuration</full_name>
+        <default></default>
+        <docblock line="18">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers" line="26" package="Default">
+        <name>__construct</name>
+        <full_name>\IceCreamDatabase\Drivers\DriverFactory::__construct()</full_name>
+        <docblock line="26">
+          <description>Accepts the type and the configuration to return a driver.</description>
+          <long-description></long-description>
+          <tag name="param" line="26" description="" type="String" variable="$type">
+            <type>String</type>
+          </tag>
+          <tag name="param" line="26" description="" type="Array" variable="$configuration">
+            <type>Array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$type</name>
+          <default></default>
+          <type>String</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$configuration</name>
+          <default></default>
+          <type>Array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers" line="37" package="Default">
+        <name>createDriverInstance</name>
+        <full_name>\IceCreamDatabase\Drivers\DriverFactory::createDriverInstance()</full_name>
+        <docblock line="37">
+          <description>Creates a driver instance for connecting to the database.</description>
+          <long-description></long-description>
+          <tag name="return" line="37" description="or Psql Driver" type="\IceCreamDatabase\Drivers\Mysql">
+            <type>\IceCreamDatabase\Drivers\Mysql</type>
+          </tag>
+          <tag name="throws" line="37" description="when driver cannot be found." type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="17" code="PPC:ERR-50007">No summary for property $_type</error>
+      <error line="18" code="PPC:ERR-50007">No summary for property $_configuration</error>
+    </parse_markers>
+    <source>eJyVVE2P0zAQvedXzKFS0wraO2GB1RaklVip0BNSpZXrTBpLiW1sZ0OF+t/x2O5u+kFZ5pBE8Zs3b95M8v6jrnWWSdai1Ywj3HO8M8jaBXNswyyuF0Y8obFFlnX278frh5392cRrfFVcxy+3K48P11fhPU44TLdDRjafTjOYwnd0nZEWXI3AtDZKG8EcQhlwUCkTjriSErkTSs58FiWuRKsbhIpxp8wOnIISHZpWSARRQY8gEUtgsFx9+wqe5uEHPUReIjChsoeQ2BKUDIXcTiOVmGe8YdZC1PslVfmdZeDDa3wikaNHghcn77zWSmw7w0huETNCtxRTuOUctbPP1YDJ8tDjSx41FBX6FqLoWWI4EH3SzLAWVs4IuYURcZ0c3RrDdjA6Ik6QeRTdbRrBoepk8BYeSbx1puMuH/K+uUg18X5AipGrhX37IRgCz3ET04sz2HGvNyfEEb8/s472y6F9dgSEF8uk333ak8OOeNHePHK0TKt45lxyNuw87caS7ou0GgnjaqN6C+vPv2heJLOvUR4qcyalcrCh0p0sZ1dt5UF35L9PkvOhe7YXjteQe+udalSPJh8aOhliKbhvCsYtyR+/OzqhSN1J7GHwVecXvZ8UF4j19p/Eg8//P4ht+AdcZx7+J15FXWLFusadk4YJBs6XIebjO9U1JdDw4lhOd2mWFiFA4nDHg4r7tJv77A8K7Lh8</source>
+  </file>
+  <file path="Drivers/Mysql/MysqlDriver.php" generated-path="Drivers.Mysql.MysqlDriver.html" hash="5827bf6711013f07ae3af2b6d762beed" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="BaseDriver">\IceCreamDatabase\Drivers\BaseDriver</namespace-alias>
+    <class final="false" abstract="false" namespace="IceCreamDatabase\Drivers\Mysql" line="10" package="Default">
+      <extends>\IceCreamDatabase\Drivers\BaseDriver</extends>
+      <name>MysqlDriver</name>
+      <full_name>\IceCreamDatabase\Drivers\Mysql\MysqlDriver</full_name>
+      <docblock line="10">
+        <description>Creates the connection string for MySql.</description>
+        <long-description>Responsible for storing basic information about the driver
+and how to connect to it.
+
+Creates the basic configiuration string (some drivers may need to do some extra work)
+and stores the user name and password for the connection to the database which should
+come from the enviroment file.</long-description>
+        <tag name="package" line="10" description="Default"/>
+        <tag name="inherited_from" description="\IceCreamDatabase\Drivers\BaseDriver" refers="\IceCreamDatabase\Drivers\BaseDriver" link="/classes/IceCreamDatabase.Drivers.BaseDriver.html"/>
+      </docblock>
+      <property static="false" visibility="private" namespace="IceCreamDatabase\Drivers\Mysql" line="12" package="Default">
+        <name>$_charSet</name>
+        <full_name>\IceCreamDatabase\Drivers\Mysql\MysqlDriver::_charSet</full_name>
+        <default>''</default>
+        <docblock line="12">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="IceCreamDatabase\Drivers\Mysql" line="18" package="Default">
+        <name>$_configurationString</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::_configurationString</full_name>
+        <default>''</default>
+        <docblock line="18">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="IceCreamDatabase\Drivers\Mysql" line="20" package="Default">
+        <name>$_username</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::_username</full_name>
+        <default>''</default>
+        <docblock line="20">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="IceCreamDatabase\Drivers\Mysql" line="21" package="Default">
+        <name>$_password</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::_password</full_name>
+        <default>''</default>
+        <docblock line="21">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\Mysql" line="14" package="Default">
+        <name>__construct</name>
+        <full_name>\IceCreamDatabase\Drivers\Mysql\MysqlDriver::__construct()</full_name>
+        <docblock line="14">
+          <description>Configuration informatiuon for the database.</description>
+          <long-description></long-description>
+          <tag name="inherited_from" description="\IceCreamDatabase\Drivers\BaseDriver::__construct()" refers="\IceCreamDatabase\Drivers\BaseDriver::__construct()" link="/classes/IceCreamDatabase.Drivers.BaseDriver.html#method___construct"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$configuration</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\Mysql" line="25" package="Default">
+        <name>connectionString</name>
+        <full_name>\IceCreamDatabase\Drivers\Mysql\MysqlDriver::connectionString()</full_name>
+        <docblock line="25">
+          <description>This function returns the $_configurationString</description>
+          <long-description>Use this functions to append information to the protected $_configurationString
+and then return that as the connection string.</long-description>
+          <tag name="inherited_from" description="\IceCreamDatabase\Drivers\BaseDriver::connectionString()" refers="\IceCreamDatabase\Drivers\BaseDriver::connectionString()" link="/classes/IceCreamDatabase.Drivers.BaseDriver.html#method_connectionString"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\Mysql" line="28" package="Default">
+        <name>__construct</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::__construct()</full_name>
+        <docblock line="28">
+          <description>Configuration informatiuon for the database.</description>
+          <long-description></long-description>
+          <tag name="param" line="28" description="" type="array" variable="$configuration">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$configuration</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\IceCreamDatabase\Drivers\BaseDriver</inherited_from>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\Mysql" line="48" package="Default">
+        <name>connectionString</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::connectionString()</full_name>
+        <docblock line="48">
+          <description>This function returns the $_configurationString</description>
+          <long-description>Use this functions to append information to the protected $_configurationString
+and then return that as the connection string.</long-description>
+          <tag name="return" line="48" description="" type="String">
+            <type>String</type>
+          </tag>
+        </docblock>
+        <inherited_from>\IceCreamDatabase\Drivers\BaseDriver</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\Mysql" line="55" package="Default">
+        <name>username</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::username()</full_name>
+        <docblock line="55">
+          <description>Gets the username for the database.</description>
+          <long-description></long-description>
+          <tag name="return" line="55" description="" type="String">
+            <type>String</type>
+          </tag>
+        </docblock>
+        <inherited_from>\IceCreamDatabase\Drivers\BaseDriver</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\Mysql" line="64" package="Default">
+        <name>password</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::password()</full_name>
+        <docblock line="64">
+          <description>Gets the password for the database.</description>
+          <long-description></long-description>
+          <tag name="return" line="64" description="" type="String">
+            <type>String</type>
+          </tag>
+        </docblock>
+        <inherited_from>\IceCreamDatabase\Drivers\BaseDriver</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="IceCreamDatabase\Drivers\Mysql" line="68" package="Default">
+        <name>createConfigurationString</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::createConfigurationString()</full_name>
+        <docblock line="68">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$configuration</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\IceCreamDatabase\Drivers\BaseDriver</inherited_from>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="14" code="PPC:ERR-50015">Argument $configuration is missing from the Docblock of __construct</error>
+      <error line="14" code="PPC:ERR-50008">No summary for method __construct()</error>
+      <error line="12" code="PPC:ERR-50007">No summary for property $_charSet</error>
+    </parse_markers>
+    <source>eJyNUU1vwjAMvedXeBJSodLoHdZt2rjswKnHMaEQXBqppMVJpyHU/z6nDaKqtmnvkA/n5dnPfniqi1oII49oa6kQ3hS+EsrjSjq5kxY3K9KfSHazPttTuRSisX+QXvjSn5mZxLGAGDzToQVXIKjKGFROVwasI20OkFcE63N2KufMTYQqpbXQ5ep1AL8cmr2FmzRchABGzTdWhslWFZIydJBCFC3DY7MrtYK8MX267ZZzc85GuakkkmeYcCDXh4akJ8xYFQJqSWjcYjH8M2KHLB46h6m2Fsec98iXxfHoYzZU95i4Qtv7x2HhgZxGMIdfhfgtWrLFq04r+rXbun57xHB51qZA0m5fqTYEkx/7cptI1g1kOltAf7q2+epxXPNd6ts9dkboGjI3g0MjQXeejv0PDYn/K4UhtKIV39h23Gg=</source>
+  </file>
+  <file path="Drivers/PgSql/PgSqlDriver.php" generated-path="Drivers.PgSql.PgSqlDriver.html" hash="5fcb0cf1ea95a066851490ba7dffa18a" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="BaseDriver">\IceCreamDatabase\Drivers\BaseDriver</namespace-alias>
+    <class final="false" abstract="false" namespace="IceCreamDatabase\Drivers\PgSql" line="10" package="Default">
+      <extends>\IceCreamDatabase\Drivers\BaseDriver</extends>
+      <name>PgSqlDriver</name>
+      <full_name>\IceCreamDatabase\Drivers\PgSql\PgSqlDriver</full_name>
+      <docblock line="10">
+        <description>Creates the connection string for PgSql.</description>
+        <long-description>Responsible for storing basic information about the driver
+and how to connect to it.
+
+Creates the basic configiuration string (some drivers may need to do some extra work)
+and stores the user name and password for the connection to the database which should
+come from the enviroment file.</long-description>
+        <tag name="package" line="10" description="Default"/>
+        <tag name="inherited_from" description="\IceCreamDatabase\Drivers\BaseDriver" refers="\IceCreamDatabase\Drivers\BaseDriver" link="/classes/IceCreamDatabase.Drivers.BaseDriver.html"/>
+      </docblock>
+      <property static="false" visibility="private" namespace="IceCreamDatabase\Drivers\PgSql" line="12" package="Default">
+        <name>$_charSet</name>
+        <full_name>\IceCreamDatabase\Drivers\PgSql\PgSqlDriver::_charSet</full_name>
+        <default>''</default>
+        <docblock line="12">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="IceCreamDatabase\Drivers\PgSql" line="18" package="Default">
+        <name>$_configurationString</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::_configurationString</full_name>
+        <default>''</default>
+        <docblock line="18">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="IceCreamDatabase\Drivers\PgSql" line="20" package="Default">
+        <name>$_username</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::_username</full_name>
+        <default>''</default>
+        <docblock line="20">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="IceCreamDatabase\Drivers\PgSql" line="21" package="Default">
+        <name>$_password</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::_password</full_name>
+        <default>''</default>
+        <docblock line="21">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\PgSql" line="14" package="Default">
+        <name>__construct</name>
+        <full_name>\IceCreamDatabase\Drivers\PgSql\PgSqlDriver::__construct()</full_name>
+        <docblock line="14">
+          <description>Configuration informatiuon for the database.</description>
+          <long-description></long-description>
+          <tag name="inherited_from" description="\IceCreamDatabase\Drivers\BaseDriver::__construct()" refers="\IceCreamDatabase\Drivers\BaseDriver::__construct()" link="/classes/IceCreamDatabase.Drivers.BaseDriver.html#method___construct"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$configuration</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\PgSql" line="25" package="Default">
+        <name>connectionString</name>
+        <full_name>\IceCreamDatabase\Drivers\PgSql\PgSqlDriver::connectionString()</full_name>
+        <docblock line="25">
+          <description>This function returns the $_configurationString</description>
+          <long-description>Use this functions to append information to the protected $_configurationString
+and then return that as the connection string.</long-description>
+          <tag name="inherited_from" description="\IceCreamDatabase\Drivers\BaseDriver::connectionString()" refers="\IceCreamDatabase\Drivers\BaseDriver::connectionString()" link="/classes/IceCreamDatabase.Drivers.BaseDriver.html#method_connectionString"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\PgSql" line="28" package="Default">
+        <name>__construct</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::__construct()</full_name>
+        <docblock line="28">
+          <description>Configuration informatiuon for the database.</description>
+          <long-description></long-description>
+          <tag name="param" line="28" description="" type="array" variable="$configuration">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$configuration</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\IceCreamDatabase\Drivers\BaseDriver</inherited_from>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\PgSql" line="48" package="Default">
+        <name>connectionString</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::connectionString()</full_name>
+        <docblock line="48">
+          <description>This function returns the $_configurationString</description>
+          <long-description>Use this functions to append information to the protected $_configurationString
+and then return that as the connection string.</long-description>
+          <tag name="return" line="48" description="" type="String">
+            <type>String</type>
+          </tag>
+        </docblock>
+        <inherited_from>\IceCreamDatabase\Drivers\BaseDriver</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\PgSql" line="55" package="Default">
+        <name>username</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::username()</full_name>
+        <docblock line="55">
+          <description>Gets the username for the database.</description>
+          <long-description></long-description>
+          <tag name="return" line="55" description="" type="String">
+            <type>String</type>
+          </tag>
+        </docblock>
+        <inherited_from>\IceCreamDatabase\Drivers\BaseDriver</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\PgSql" line="64" package="Default">
+        <name>password</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::password()</full_name>
+        <docblock line="64">
+          <description>Gets the password for the database.</description>
+          <long-description></long-description>
+          <tag name="return" line="64" description="" type="String">
+            <type>String</type>
+          </tag>
+        </docblock>
+        <inherited_from>\IceCreamDatabase\Drivers\BaseDriver</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="IceCreamDatabase\Drivers\PgSql" line="68" package="Default">
+        <name>createConfigurationString</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::createConfigurationString()</full_name>
+        <docblock line="68">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$configuration</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\IceCreamDatabase\Drivers\BaseDriver</inherited_from>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="14" code="PPC:ERR-50015">Argument $configuration is missing from the Docblock of __construct</error>
+      <error line="14" code="PPC:ERR-50008">No summary for method __construct()</error>
+      <error line="12" code="PPC:ERR-50007">No summary for property $_charSet</error>
+    </parse_markers>
+    <source>eJyNUcFOg0AQve9XjKQJLUnpvYga7cWbSY/WkHU7lE3ogrOL0TT8u7NALSFqnMOyO7x9b9+869u6qIUw8oi2lgrhUeEDoTxupJOv0uJuQ/odye6eDtu3MhGisX+A7vnQ7xm5iiIBEXikQwuuQFCVMaicrgxYR9ocIK8IOuqYsSuhSmlt3+h5AD8cmr2FCzWchACumk/MDLNMFZK26CCFMEyGn81rqRXkjenlsoy1WbNRbi6J5CfMuJHrQ0PSAxbMCkPVktC49Xp8Z4IeVHzpHObaWpxinkP/LO6HL4sxu6+ZK7Rd3oweHlS1v2TTcLlUpWb9DI2q9jyjNID4V+oYgjAJkm/2VvRr9+kS8BXB6U6bAkm7faXaobn6cVKXjLZdRPPFGvrdefBn11MXV6kPYOqV0DVkLpbHRgbeOJ1OZGxI/J9piKUVrfgCpWbi0w==</source>
+  </file>
+  <file path="Drivers/Sqlite/SqliteDriver.php" generated-path="Drivers.Sqlite.SqliteDriver.html" hash="db3d8251c43a86c1b98eee2c9d91d8a5" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="BaseDriver">\IceCreamDatabase\Drivers\BaseDriver</namespace-alias>
+    <class final="false" abstract="false" namespace="IceCreamDatabase\Drivers\Sqlite" line="10" package="Default">
+      <extends>\IceCreamDatabase\Drivers\BaseDriver</extends>
+      <name>SqliteDriver</name>
+      <full_name>\IceCreamDatabase\Drivers\Sqlite\SqliteDriver</full_name>
+      <docblock line="10">
+        <description>Creates the connection string for PgSql.</description>
+        <long-description>Responsible for storing basic information about the driver
+and how to connect to it.
+
+Creates the basic configiuration string (some drivers may need to do some extra work)
+and stores the user name and password for the connection to the database which should
+come from the enviroment file.</long-description>
+        <tag name="package" line="10" description="Default"/>
+        <tag name="inherited_from" description="\IceCreamDatabase\Drivers\BaseDriver" refers="\IceCreamDatabase\Drivers\BaseDriver" link="/classes/IceCreamDatabase.Drivers.BaseDriver.html"/>
+      </docblock>
+      <property static="false" visibility="private" namespace="IceCreamDatabase\Drivers\Sqlite" line="12" package="Default">
+        <name>$_charSet</name>
+        <full_name>\IceCreamDatabase\Drivers\Sqlite\SqliteDriver::_charSet</full_name>
+        <default>''</default>
+        <docblock line="12">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="IceCreamDatabase\Drivers\Sqlite" line="18" package="Default">
+        <name>$_configurationString</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::_configurationString</full_name>
+        <default>''</default>
+        <docblock line="18">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="IceCreamDatabase\Drivers\Sqlite" line="20" package="Default">
+        <name>$_username</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::_username</full_name>
+        <default>''</default>
+        <docblock line="20">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="IceCreamDatabase\Drivers\Sqlite" line="21" package="Default">
+        <name>$_password</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::_password</full_name>
+        <default>''</default>
+        <docblock line="21">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\Sqlite" line="14" package="Default">
+        <name>__construct</name>
+        <full_name>\IceCreamDatabase\Drivers\Sqlite\SqliteDriver::__construct()</full_name>
+        <docblock line="14">
+          <description>Configuration informatiuon for the database.</description>
+          <long-description></long-description>
+          <tag name="inherited_from" description="\IceCreamDatabase\Drivers\BaseDriver::__construct()" refers="\IceCreamDatabase\Drivers\BaseDriver::__construct()" link="/classes/IceCreamDatabase.Drivers.BaseDriver.html#method___construct"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$configuration</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\Sqlite" line="21" package="Default">
+        <name>connectionString</name>
+        <full_name>\IceCreamDatabase\Drivers\Sqlite\SqliteDriver::connectionString()</full_name>
+        <docblock line="21">
+          <description>This function returns the $_configurationString</description>
+          <long-description>Use this functions to append information to the protected $_configurationString
+and then return that as the connection string.</long-description>
+          <tag name="inherited_from" description="\IceCreamDatabase\Drivers\BaseDriver::connectionString()" refers="\IceCreamDatabase\Drivers\BaseDriver::connectionString()" link="/classes/IceCreamDatabase.Drivers.BaseDriver.html#method_connectionString"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\Sqlite" line="28" package="Default">
+        <name>__construct</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::__construct()</full_name>
+        <docblock line="28">
+          <description>Configuration informatiuon for the database.</description>
+          <long-description></long-description>
+          <tag name="param" line="28" description="" type="array" variable="$configuration">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$configuration</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\IceCreamDatabase\Drivers\BaseDriver</inherited_from>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\Sqlite" line="48" package="Default">
+        <name>connectionString</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::connectionString()</full_name>
+        <docblock line="48">
+          <description>This function returns the $_configurationString</description>
+          <long-description>Use this functions to append information to the protected $_configurationString
+and then return that as the connection string.</long-description>
+          <tag name="return" line="48" description="" type="String">
+            <type>String</type>
+          </tag>
+        </docblock>
+        <inherited_from>\IceCreamDatabase\Drivers\BaseDriver</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\Sqlite" line="55" package="Default">
+        <name>username</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::username()</full_name>
+        <docblock line="55">
+          <description>Gets the username for the database.</description>
+          <long-description></long-description>
+          <tag name="return" line="55" description="" type="String">
+            <type>String</type>
+          </tag>
+        </docblock>
+        <inherited_from>\IceCreamDatabase\Drivers\BaseDriver</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IceCreamDatabase\Drivers\Sqlite" line="64" package="Default">
+        <name>password</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::password()</full_name>
+        <docblock line="64">
+          <description>Gets the password for the database.</description>
+          <long-description></long-description>
+          <tag name="return" line="64" description="" type="String">
+            <type>String</type>
+          </tag>
+        </docblock>
+        <inherited_from>\IceCreamDatabase\Drivers\BaseDriver</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="IceCreamDatabase\Drivers\Sqlite" line="68" package="Default">
+        <name>createConfigurationString</name>
+        <full_name>\IceCreamDatabase\Drivers\BaseDriver::createConfigurationString()</full_name>
+        <docblock line="68">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$configuration</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\IceCreamDatabase\Drivers\BaseDriver</inherited_from>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="14" code="PPC:ERR-50015">Argument $configuration is missing from the Docblock of __construct</error>
+      <error line="14" code="PPC:ERR-50008">No summary for method __construct()</error>
+      <error line="12" code="PPC:ERR-50007">No summary for property $_charSet</error>
+    </parse_markers>
+    <source>eJx9kEFPwzAMhe/5FT5U2lYJem+BIdiFG1Kvkyovc9tIXVocB4Gm/nfSpmgDIXxynC/vvfhuO7SDUhZP5AbUBC+anpnwtEPBAzra79i8E7t9+dYZoUIp7/6hnsIh9oHM0lRBChMp5EBaAt1bS1pMb8EJG9tA3TO8NkH9NrCZ0h06B9EsCgF9CNmjg4s2nJWCUEM4BWlIKt0ilyRwD6tVsVz6Q2c01N5Gv6oK5sHUa1kjM35CEga1aTzjBGyCKiw1IJOVPL9+84suZniMXvNPp0rh/GhsS2zk2OtxGWZ/BrrsopxXsd7kELurJEzi2UIirXE3D9WPDBH+DjKqL1FAliY=</source>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="global" full_name="global"/>
+  <namespace name="IceCreamDatabase" full_name="IceCreamDatabase">
+    <namespace name="Connections" full_name="IceCreamDatabase\Connections"/>
+    <namespace name="Drivers" full_name="IceCreamDatabase\Drivers">
+      <namespace name="Mysql" full_name="IceCreamDatabase\Drivers\Mysql"/>
+      <namespace name="PgSql" full_name="IceCreamDatabase\Drivers\PgSql"/>
+      <namespace name="Sqlite" full_name="IceCreamDatabase\Drivers\Sqlite"/>
+    </namespace>
+  </namespace>
+  <deprecated count="0"/>
+</project>

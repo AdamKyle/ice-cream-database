@@ -1,8 +1,9 @@
 <?php
 
 use IceCreamDatabase\Drivers\BaseDriver;
+use PHPUnit\Framework\TestCase;
 
-class BaseDriverTest extends \PHPUnit_Framework_TestCase {
+class BaseDriverTest extends TestCase {
 
     private $_baseDriverMock = null;
 

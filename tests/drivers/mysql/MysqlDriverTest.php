@@ -1,8 +1,9 @@
 <?php
 
 use IceCreamDatabase\Drivers\Mysql\MysqlDriver;
+use PHPUnit\Framework\TestCase;
 
-class MysqlDriverTest extends \PHPUnit_Framework_TestCase {
+class MysqlDriverTest extends TestCase {
 
     private $_configuration = [];
 

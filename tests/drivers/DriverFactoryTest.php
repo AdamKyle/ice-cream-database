@@ -4,8 +4,9 @@ use IceCreamDatabase\Drivers\Mysql\MysqlDriver;
 use IceCreamDatabase\Drivers\Pgsql\PgSqlDriver;
 use IceCreamDatabase\Drivers\Sqlite\SqliteDriver;
 use IceCreamDatabase\Drivers\DriverFactory;
+use PHPUnit\Framework\TestCase;
 
-class DriverFactoryTest extends \PHPUnit_Framework_TestCase {
+class DriverFactoryTest extends TestCase {
 
     private $_databaseConnectionConfig = [];
 
