@@ -9,7 +9,7 @@ A DBAL at the most simplest of terms. Its a thin wrapper around PDO, while retur
 
 We can connect to multiple database instances of either PGSQL or MYSQL (see below) and create open connections to each.
 
-- Requires PHP 7
+- Requires PHP 7.2.x
 - Is Standalone
 
 ## Install
